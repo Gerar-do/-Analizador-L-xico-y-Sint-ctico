@@ -1,0 +1,426 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ASIGNAR
+    CIN
+    COMDOB
+    CORDER
+    CORIZQ
+    COUT
+    DISTINTO
+    DIV
+    ENDL
+    GET
+    IGUAL
+    INCLUDE
+    INT
+    MAYORDER
+    MAYORIGUAL
+    MAYORIZQ
+    MAYORQUE
+    MENORIGUAL
+    MENORQUE
+    MIENTRAS
+    MINUSMINUS
+    MODULO
+    MULT
+    NAMESPACE
+    NOT
+    NUMERAL
+    OR
+    PARA
+    PLUSPLUS
+    POTENCIA
+    RESTA
+    RETURN
+    SI
+    SINO
+    STD
+    SUMA
+    USING
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declaraciones
+Rule 2     declaraciones -> declaraciones declaracion
+Rule 3     declaraciones -> declaracion
+Rule 4     declaracion -> tipo IDENTIFICADOR PARIZQ PARDER bloque
+Rule 5     tipo -> VOID
+Rule 6     bloque -> LLAIZQ instrucciones LLADER
+Rule 7     instrucciones -> instrucciones instruccion
+Rule 8     instrucciones -> instruccion
+Rule 9     instruccion -> expresion PUNTOCOMA
+Rule 10    expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos PARDER
+Rule 11    expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ PARDER
+Rule 12    argumentos -> argumentos COMA argumento
+Rule 13    argumentos -> argumento
+Rule 14    argumento -> ENTERO
+Rule 15    argumento -> NUMERO
+Rule 16    argumento -> CADENA
+Rule 17    argumento -> IDENTIFICADOR
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASIGNAR              : 
+CADENA               : 16
+CIN                  : 
+COMA                 : 12
+COMDOB               : 
+CORDER               : 
+CORIZQ               : 
+COUT                 : 
+DISTINTO             : 
+DIV                  : 
+ENDL                 : 
+ENTERO               : 14
+GET                  : 
+IDENTIFICADOR        : 4 10 10 11 11 17
+IGUAL                : 
+INCLUDE              : 
+INT                  : 
+LLADER               : 6
+LLAIZQ               : 6
+MAYORDER             : 
+MAYORIGUAL           : 
+MAYORIZQ             : 
+MAYORQUE             : 
+MENORIGUAL           : 
+MENORQUE             : 
+MIENTRAS             : 
+MINUSMINUS           : 
+MODULO               : 
+MULT                 : 
+NAMESPACE            : 
+NOT                  : 
+NUMERAL              : 
+NUMERO               : 15
+OR                   : 
+PARA                 : 
+PARDER               : 4 10 11
+PARIZQ               : 4 10 11
+PLUSPLUS             : 
+POTENCIA             : 
+PUNTO                : 10 11
+PUNTOCOMA            : 9
+RESTA                : 
+RETURN               : 
+SI                   : 
+SINO                 : 
+STD                  : 
+SUMA                 : 
+USING                : 
+VOID                 : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+argumento            : 12 13
+argumentos           : 10 12
+bloque               : 4
+declaracion          : 2 3
+declaraciones        : 1 2
+expresion            : 9
+instruccion          : 7 8
+instrucciones        : 6 7
+program              : 0
+tipo                 : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declaraciones
+    (2) declaraciones -> . declaraciones declaracion
+    (3) declaraciones -> . declaracion
+    (4) declaracion -> . tipo IDENTIFICADOR PARIZQ PARDER bloque
+    (5) tipo -> . VOID
+
+    VOID            shift and go to state 5
+
+    program                        shift and go to state 1
+    declaraciones                  shift and go to state 2
+    declaracion                    shift and go to state 3
+    tipo                           shift and go to state 4
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declaraciones .
+    (2) declaraciones -> declaraciones . declaracion
+    (4) declaracion -> . tipo IDENTIFICADOR PARIZQ PARDER bloque
+    (5) tipo -> . VOID
+
+    $end            reduce using rule 1 (program -> declaraciones .)
+    VOID            shift and go to state 5
+
+    declaracion                    shift and go to state 6
+    tipo                           shift and go to state 4
+
+state 3
+
+    (3) declaraciones -> declaracion .
+
+    VOID            reduce using rule 3 (declaraciones -> declaracion .)
+    $end            reduce using rule 3 (declaraciones -> declaracion .)
+
+
+state 4
+
+    (4) declaracion -> tipo . IDENTIFICADOR PARIZQ PARDER bloque
+
+    IDENTIFICADOR   shift and go to state 7
+
+
+state 5
+
+    (5) tipo -> VOID .
+
+    IDENTIFICADOR   reduce using rule 5 (tipo -> VOID .)
+
+
+state 6
+
+    (2) declaraciones -> declaraciones declaracion .
+
+    VOID            reduce using rule 2 (declaraciones -> declaraciones declaracion .)
+    $end            reduce using rule 2 (declaraciones -> declaraciones declaracion .)
+
+
+state 7
+
+    (4) declaracion -> tipo IDENTIFICADOR . PARIZQ PARDER bloque
+
+    PARIZQ          shift and go to state 8
+
+
+state 8
+
+    (4) declaracion -> tipo IDENTIFICADOR PARIZQ . PARDER bloque
+
+    PARDER          shift and go to state 9
+
+
+state 9
+
+    (4) declaracion -> tipo IDENTIFICADOR PARIZQ PARDER . bloque
+    (6) bloque -> . LLAIZQ instrucciones LLADER
+
+    LLAIZQ          shift and go to state 11
+
+    bloque                         shift and go to state 10
+
+state 10
+
+    (4) declaracion -> tipo IDENTIFICADOR PARIZQ PARDER bloque .
+
+    VOID            reduce using rule 4 (declaracion -> tipo IDENTIFICADOR PARIZQ PARDER bloque .)
+    $end            reduce using rule 4 (declaracion -> tipo IDENTIFICADOR PARIZQ PARDER bloque .)
+
+
+state 11
+
+    (6) bloque -> LLAIZQ . instrucciones LLADER
+    (7) instrucciones -> . instrucciones instruccion
+    (8) instrucciones -> . instruccion
+    (9) instruccion -> . expresion PUNTOCOMA
+    (10) expresion -> . IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos PARDER
+    (11) expresion -> . IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ PARDER
+
+    IDENTIFICADOR   shift and go to state 15
+
+    instrucciones                  shift and go to state 12
+    instruccion                    shift and go to state 13
+    expresion                      shift and go to state 14
+
+state 12
+
+    (6) bloque -> LLAIZQ instrucciones . LLADER
+    (7) instrucciones -> instrucciones . instruccion
+    (9) instruccion -> . expresion PUNTOCOMA
+    (10) expresion -> . IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos PARDER
+    (11) expresion -> . IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ PARDER
+
+    LLADER          shift and go to state 16
+    IDENTIFICADOR   shift and go to state 15
+
+    instruccion                    shift and go to state 17
+    expresion                      shift and go to state 14
+
+state 13
+
+    (8) instrucciones -> instruccion .
+
+    LLADER          reduce using rule 8 (instrucciones -> instruccion .)
+    IDENTIFICADOR   reduce using rule 8 (instrucciones -> instruccion .)
+
+
+state 14
+
+    (9) instruccion -> expresion . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 18
+
+
+state 15
+
+    (10) expresion -> IDENTIFICADOR . PUNTO IDENTIFICADOR PARIZQ argumentos PARDER
+    (11) expresion -> IDENTIFICADOR . PUNTO IDENTIFICADOR PARIZQ PARDER
+
+    PUNTO           shift and go to state 19
+
+
+state 16
+
+    (6) bloque -> LLAIZQ instrucciones LLADER .
+
+    VOID            reduce using rule 6 (bloque -> LLAIZQ instrucciones LLADER .)
+    $end            reduce using rule 6 (bloque -> LLAIZQ instrucciones LLADER .)
+
+
+state 17
+
+    (7) instrucciones -> instrucciones instruccion .
+
+    LLADER          reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+    IDENTIFICADOR   reduce using rule 7 (instrucciones -> instrucciones instruccion .)
+
+
+state 18
+
+    (9) instruccion -> expresion PUNTOCOMA .
+
+    LLADER          reduce using rule 9 (instruccion -> expresion PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 9 (instruccion -> expresion PUNTOCOMA .)
+
+
+state 19
+
+    (10) expresion -> IDENTIFICADOR PUNTO . IDENTIFICADOR PARIZQ argumentos PARDER
+    (11) expresion -> IDENTIFICADOR PUNTO . IDENTIFICADOR PARIZQ PARDER
+
+    IDENTIFICADOR   shift and go to state 20
+
+
+state 20
+
+    (10) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR . PARIZQ argumentos PARDER
+    (11) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR . PARIZQ PARDER
+
+    PARIZQ          shift and go to state 21
+
+
+state 21
+
+    (10) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ . argumentos PARDER
+    (11) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ . PARDER
+    (12) argumentos -> . argumentos COMA argumento
+    (13) argumentos -> . argumento
+    (14) argumento -> . ENTERO
+    (15) argumento -> . NUMERO
+    (16) argumento -> . CADENA
+    (17) argumento -> . IDENTIFICADOR
+
+    PARDER          shift and go to state 24
+    ENTERO          shift and go to state 26
+    NUMERO          shift and go to state 27
+    CADENA          shift and go to state 28
+    IDENTIFICADOR   shift and go to state 22
+
+    argumentos                     shift and go to state 23
+    argumento                      shift and go to state 25
+
+state 22
+
+    (17) argumento -> IDENTIFICADOR .
+
+    PARDER          reduce using rule 17 (argumento -> IDENTIFICADOR .)
+    COMA            reduce using rule 17 (argumento -> IDENTIFICADOR .)
+
+
+state 23
+
+    (10) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos . PARDER
+    (12) argumentos -> argumentos . COMA argumento
+
+    PARDER          shift and go to state 29
+    COMA            shift and go to state 30
+
+
+state 24
+
+    (11) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ PARDER .
+
+    PUNTOCOMA       reduce using rule 11 (expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ PARDER .)
+
+
+state 25
+
+    (13) argumentos -> argumento .
+
+    PARDER          reduce using rule 13 (argumentos -> argumento .)
+    COMA            reduce using rule 13 (argumentos -> argumento .)
+
+
+state 26
+
+    (14) argumento -> ENTERO .
+
+    PARDER          reduce using rule 14 (argumento -> ENTERO .)
+    COMA            reduce using rule 14 (argumento -> ENTERO .)
+
+
+state 27
+
+    (15) argumento -> NUMERO .
+
+    PARDER          reduce using rule 15 (argumento -> NUMERO .)
+    COMA            reduce using rule 15 (argumento -> NUMERO .)
+
+
+state 28
+
+    (16) argumento -> CADENA .
+
+    PARDER          reduce using rule 16 (argumento -> CADENA .)
+    COMA            reduce using rule 16 (argumento -> CADENA .)
+
+
+state 29
+
+    (10) expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos PARDER .
+
+    PUNTOCOMA       reduce using rule 10 (expresion -> IDENTIFICADOR PUNTO IDENTIFICADOR PARIZQ argumentos PARDER .)
+
+
+state 30
+
+    (12) argumentos -> argumentos COMA . argumento
+    (14) argumento -> . ENTERO
+    (15) argumento -> . NUMERO
+    (16) argumento -> . CADENA
+    (17) argumento -> . IDENTIFICADOR
+
+    ENTERO          shift and go to state 26
+    NUMERO          shift and go to state 27
+    CADENA          shift and go to state 28
+    IDENTIFICADOR   shift and go to state 22
+
+    argumento                      shift and go to state 31
+
+state 31
+
+    (12) argumentos -> argumentos COMA argumento .
+
+    PARDER          reduce using rule 12 (argumentos -> argumentos COMA argumento .)
+    COMA            reduce using rule 12 (argumentos -> argumentos COMA argumento .)
+
